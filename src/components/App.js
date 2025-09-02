@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Menu from "./Menu";
-import "./styles.css";
-
+import "../styles/App.css";
 const dishes = [
   {
     id: 1,
