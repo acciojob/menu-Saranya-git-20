@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Menu from "./Menu";
-import "./styles.css";
+import "./styles/App.css";
 
 const dishes = [
   { id: 1, name: "Pancakes", category: "Breakfast", price: "$5", image: "https://via.placeholder.com/150?text=Pancakes" },
@@ -14,26 +14,23 @@ const dishes = [
 function App() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  // Categories with "All" + rest
+  // Must match test order
   const categories = ["All", "Breakfast", "Lunch", "Shakes"];
 
   return (
     <div id="main" className="app">
       <h1 className="title">Restaurant Menu</h1>
       <div className="categories">
-        {categories.map((cat, index) => {
-          const btnId = cat === "All" ? "filter-btn-0" : `filter-btn-${index}`;
-          return (
-            <button
-              key={cat}
-              id={btnId}
-              className={`category-btn ${activeCategory === cat ? "active" : ""}`}
-              onClick={() => setActiveCategory(cat)}
-            >
-              {cat}
-            </button>
-          );
-        })}
+        {categories.map((cat, index) => (
+          <button
+            key={cat}
+            id={`filter-btn-${index}`} 
+            className={`category-btn ${activeCategory === cat ? "active" : ""}`}
+            onClick={() => setActiveCategory(cat)}
+          >
+            {cat}
+          </button>
+        ))}
       </div>
 
       <Menu dishes={dishes} activeCategory={activeCategory} />
