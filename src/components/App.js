@@ -14,17 +14,17 @@ const dishes = [
 function App() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  // Must match test order
+  // Categories in the order Cypress expects
   const categories = ["All", "Breakfast", "Lunch", "Shakes"];
 
   return (
-    <div id="main" className="app">
+    <div id="main">   {/* ✅ Cypress needs this exact id */}
       <h1 className="title">Restaurant Menu</h1>
       <div className="categories">
         {categories.map((cat, index) => (
           <button
             key={cat}
-            id={`filter-btn-${index}`} 
+            id={`filter-btn-${index}`}   // ✅ exact IDs Cypress is testing
             className={`category-btn ${activeCategory === cat ? "active" : ""}`}
             onClick={() => setActiveCategory(cat)}
           >
