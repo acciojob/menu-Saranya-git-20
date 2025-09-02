@@ -1,56 +1,29 @@
 import React, { useState } from "react";
 import Menu from "./Menu";
-import "../styles/App.css";
+import "./styles.css";
+
 const dishes = [
-  {
-    id: 1,
-    name: "Margherita Pizza",
-    category: "Pizza",
-    price: "$12",
-    image: "https://via.placeholder.com/150?text=Pizza"
-  },
-  {
-    id: 2,
-    name: "Veggie Burger",
-    category: "Burger",
-    price: "$8",
-    image: "https://via.placeholder.com/150?text=Burger"
-  },
-  {
-    id: 3,
-    name: "Caesar Salad",
-    category: "Salad",
-    price: "$7",
-    image: "https://via.placeholder.com/150?text=Salad"
-  },
-  {
-    id: 4,
-    name: "Pepperoni Pizza",
-    category: "Pizza",
-    price: "$14",
-    image: "https://via.placeholder.com/150?text=Pizza"
-  },
-  {
-    id: 5,
-    name: "Chicken Burger",
-    category: "Burger",
-    price: "$9",
-    image: "https://via.placeholder.com/150?text=Burger"
-  }
+  { id: 1, name: "Pancakes", category: "Breakfast", price: "$5", image: "https://via.placeholder.com/150?text=Pancakes" },
+  { id: 2, name: "Burger", category: "Lunch", price: "$8", image: "https://via.placeholder.com/150?text=Burger" },
+  { id: 3, name: "Milkshake", category: "Shakes", price: "$4", image: "https://via.placeholder.com/150?text=Shake" },
+  { id: 4, name: "Omelette", category: "Breakfast", price: "$6", image: "https://via.placeholder.com/150?text=Omelette" },
+  { id: 5, name: "Steak", category: "Lunch", price: "$15", image: "https://via.placeholder.com/150?text=Steak" },
+  { id: 6, name: "Chocolate Shake", category: "Shakes", price: "$5", image: "https://via.placeholder.com/150?text=Shake" }
 ];
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", ...new Set(dishes.map((dish) => dish.category))];
+  const categories = ["All", "Breakfast", "Lunch", "Shakes"];
 
   return (
-    <div className="app">
+    <div id="main" className="app">
       <h1 className="title">Restaurant Menu</h1>
       <div className="categories">
-        {categories.map((cat) => (
+        {categories.map((cat, index) => (
           <button
             key={cat}
+            id={`filter-btn-${index}`}   {/* ✅ Cypress expects IDs like this */}
             className={`category-btn ${activeCategory === cat ? "active" : ""}`}
             onClick={() => setActiveCategory(cat)}
           >
